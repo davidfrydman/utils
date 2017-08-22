@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+
+export GIT_PAGER=cat
 
 find_this="$1"
 echo "Searching for fixed string '$find_this'"
-for revision in `git rev-list --all`; do
-    GIT_PAGER=cat git grep --ignore-case -F "$find_this" $revision
+for revision in $(git rev-list --all); do
+    git grep --ignore-case -F "$find_this" "$revision"
 done
